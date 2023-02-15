@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
         candleButton.setOnCheckedChangeListener(controller);
         SeekBar candleBar = findViewById(R.id.seekBar);
         candleBar.setOnSeekBarChangeListener(controller);
+
+        LinearLayout listener = findViewById(R.id.layout);
+        listener.setOnTouchListener(controller);
+
+
     }
 
     public void goodbye(View button) {
