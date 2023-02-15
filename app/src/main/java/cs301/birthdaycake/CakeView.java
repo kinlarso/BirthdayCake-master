@@ -18,6 +18,8 @@ public class CakeView extends SurfaceView {
     Paint wickPaint = new Paint();
     Paint balloon = new Paint();
     Paint balloonString = new Paint();
+    Paint text = new Paint();
+
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -73,6 +75,8 @@ public class CakeView extends SurfaceView {
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
+        text.setColor(Color.RED);
+        text.setTextSize(90);
     }
 
     /**
@@ -146,6 +150,16 @@ public class CakeView extends SurfaceView {
         if (model.x != 0 && model.y != 0) {
             drawBalloon(canvas, model.x, model.y);
         }
+
+
+        //draw text
+        canvas.drawText("(" + model.x + ", " + model.y + ")" , 1050, 860, text);
+
+
+
+
+
+
 
     }//onDraw
 
