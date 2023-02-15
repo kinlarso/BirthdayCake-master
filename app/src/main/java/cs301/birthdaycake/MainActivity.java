@@ -3,10 +3,12 @@ package cs301.birthdaycake;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         candleButton.setOnCheckedChangeListener(controller);
         SeekBar candleBar = findViewById(R.id.seekBar);
         candleBar.setOnSeekBarChangeListener(controller);
+
+        LinearLayout layout = findViewById(R.id.layout);
+        layout.setOnTouchListener(controller);
     }
 
     public void goodbye(View button) {

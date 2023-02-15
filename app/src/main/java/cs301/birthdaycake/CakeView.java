@@ -16,6 +16,8 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloon = new Paint();
+    Paint balloonString = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -33,6 +35,10 @@ public class CakeView extends SurfaceView {
     public static final float wickWidth = 6.0f;
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
+    public static final float balloonWidth = 90.0f;
+    public static final float balloonHeight = 120.0f;
+    public static final float balloonStringWidth = 10.0f;
+    public static final float balloonStringHeight = 100.0f;
 
     private CakeModel model;
 
@@ -60,6 +66,10 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloon.setColor(Color.BLUE);
+        balloon.setStyle(Paint.Style.FILL);
+        balloonString.setColor(Color.BLACK);
+        balloon.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -89,7 +99,13 @@ public class CakeView extends SurfaceView {
             float wickTop = bottom - wickHeight - candleHeight;
             canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
         }
-    }
+    } //drawCandle
+
+    public void drawBalloon(Canvas canvas, float x, float y) {
+        //canvas.drawCircle(x, y-150, balloonSize, balloon);
+        canvas.drawOval(x-(balloonWidth/2), y-160-(balloonHeight/2), x+(balloonWidth/2), y-160+(balloonHeight/2), balloon);
+        canvas.drawRect(x-(balloonStringWidth/2), y-160+(balloonHeight/2), x+(balloonStringWidth/2), y-160+(balloonHeight/2)+(balloonStringHeight), balloonString);
+    } //drawBalloon
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
@@ -126,6 +142,11 @@ public class CakeView extends SurfaceView {
         for (int i = 1; i <= model.candleCount; i++) {
             drawCandle(canvas, cakeLeft + (i * cakeWidth) / (model.candleCount + 1) - (i * candleWidth) / (model.candleCount + 1), cakeTop);
         }
+
+        if (model.x != 0 && model.y != 0) {
+            drawBalloon(canvas, model.x, model.y);
+        }
+
     }//onDraw
 
     public CakeModel getCakeModel(){return model;}
